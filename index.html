@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Get it Done! - Task App</title>
+    <script type="text/javascript" src="tasks.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <h1>Let's Get Stuff Done!</h1>
+      <h2><em>(or at least tell your friends to do it)</em></h2>
+    </header>
+<!-- A text field for the task description, i.e., walk the dog
+     A list of radio buttons of name for whom the task is assigned, i.e., Jeremy
+     A dropdown list to indicate the difficulty of the task, i.e., easy
+     On form submission, add the task to a Javascript array called tasks,
+     then update the ordered list in index.html with the task information
+     as a series of list items. -->
+     <h3>Create Your Tasklist:</h3>
+     <div id="list-container"></div>
+     <div id="parent"></div>
+    <form name="to-do">
+      <fieldset>
+        <legend>What needs to get done?:
+          <input id="task" type="text" name="task" value="">
+        </legend>
+      </fieldset>
+      <fieldset>
+        <legend>Who should do this?:</legend>
+          <label>
+            <input type="radio" name="assignment" value="Sarah">
+            Sarah
+          </label>
+          <label>
+            <input type="radio" name="assignment" value="Nathan">
+            Nathan
+          </label>
+          <label>
+            <input type="radio" name="assignment" value="Alice">
+            Alice
+          </label>
+          <label>
+            <input type="radio" name="assignment" value="Bishop">
+            Bishop
+          </label>
+      </fieldset>
+      <fieldset>
+        <legend>Just how hard is this going to be?:</legend>
+        <select id="difficulty" name="difficulty">
+          <option value="the hardest">Wicked Hard</option>
+          <option value="pretty difficult">Little Tricky</option>
+          <option value="pretty easy">No Sweat</option>
+          <option value="the easiest">Easy as Pie</option>
+        </select>
+      </fieldset>
+      <input class="btn" type="submit">
+    </form>
+    <!-- containing an empty unordered list -->
+    <ul></ul>
+
+    <img src="./images/get-it-done.png" alt="motivating sign telling you to get shit done">
+  </body>
+</html>
