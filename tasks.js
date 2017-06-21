@@ -6,10 +6,21 @@
 console.log("It works!");
 //array with inital values
 var tasks=[
-  {task: "do the dishes",
-   name: "Sarah",
-   difficulty: "the easiest"}
 ];
+
+//assigns variables for future use, console logs tasks array for validation
+for(var i =0; i<tasks.length; i++){
+    console.log(tasks[i])
+   var currentTask = tasks[i].taskToDo;
+   var name = tasks[i].name;
+   var difficulty = tasks[i].difficulty;
+}
+
+let sarahCount = 0;
+let nathanCount = 0;
+let aliceCount = 0;
+let bishopCount = 0;
+
 //pulls task, assignment, and diff. from form and adds to array as object values
 function taskListBuilder(){
   console.log("building a tasklist!")
@@ -22,19 +33,25 @@ function taskListBuilder(){
   // Insert new task item into tasks array
   tasks.push(newTask);
 }
-//assigns variables for future use, console logs tasks array for validation
-for(var i =0; i<tasks.length; i++){
-    console.log(tasks[i])
-   var currentTask = tasks[i].taskToDo;
-   var name = tasks[i].name;
-   var difficulty = tasks[i].difficulty;
-}
 
-window.onload = function(){
-  // Select the form, attach taskListBuilder as onSubmit handler
-  var form = document.querySelector("form");
-  form.onsubmit = taskListBuilder;
-}
+  function assign(){
+    for (var name of tasks) {
+      if (tasks.name == "Sarah") {
+        sarahCount++;
+      } else if (tasks.name == "Nathan") {
+        nathanCount++;
+      } else if (tasks.name == "Alice") {
+        aliceCount++;
+      } else if (tasks.name == "Bishop") {
+        bishopCount++;
+      }
+
+    console.log(taskCounter)
+
+    drawBasic();
+    }
+  }
+
 //////////////
 /////////////
 
@@ -42,25 +59,11 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 google.charts.setOnLoadCallback(drawBasic);
 
 var taskCounter = {
-  sarah: 1,
-  nathan: 2,
-  alice: 1,
-  bishop: 1
-}
-
-window.onload = function(){
-  document.getElementById("Sarah").onclick = assign;
-  document.getElementById("Nathan").onclick = assign;
-  document.getElementById("Alice").onclick = assign;
-  document.getElementById("Bishop").onclick = assign;
-}
-
-function assign(){
-  console.log(this.id)
-  taskCounter[this.id] = taskCounter[this.id] + 1;
-  drawBasic();
-}
-
+  sarah: sarahCount,
+  nathan: nathanCount,
+  alice: aliceCount,
+  bishop: bishopCount
+};
 
 function drawBasic() {
       var data = new google.visualization.DataTable();
@@ -88,4 +91,9 @@ function drawBasic() {
         document.getElementById('chart_div'));
 
       chart.draw(data, options);
-    };
+    }
+
+    window.onload = function(){
+      var form = document.querySelector("form");
+      form.onsubmit = taskListBuilder;
+    }
