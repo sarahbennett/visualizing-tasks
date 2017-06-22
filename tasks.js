@@ -1,8 +1,3 @@
-// On form submission, add the task to a Javascript array called tasks,
-// then draw or update a chart visualizing task information.
-// It's up to you what the chart should look
-
-
 console.log("It works!");
 //array with inital values
 var tasks=[
@@ -32,25 +27,86 @@ function taskListBuilder(){
                  difficulty: document.getElementById("difficulty").value}
   // Insert new task item into tasks array
   tasks.push(newTask);
+
+
+  drawTheChart();
+}
+//xxx populate the counts
+function calcTotals(){
+  // reset the totals
+  sarahCount = 0;
+  nathanCount = 0;
+  aliceCount = 0;
+  bishopCount = 0;
+
+  // recount everything
+  for (let task of tasks) {
+    if (task.name == "Sarah") {
+          sarahCount++;
+        } else if (task.name == "Nathan") {
+          nathanCount++;
+        } else if (task.name == "Alice") {
+          aliceCount++;
+        }  else if (task.name == "Bishop") {
+          bishopCount++;
+        }
+  }
 }
 
-  function assign(){
-    for (var name of tasks) {
-      if (tasks.name == "Sarah") {
-        sarahCount++;
-      } else if (tasks.name == "Nathan") {
-        nathanCount++;
-      } else if (tasks.name == "Alice") {
-        aliceCount++;
-      } else if (tasks.name == "Bishop") {
-        bishopCount++;
+function drawTheChart(){
+  calcTotals();
+
+  google.charts.load('current', {packages: ['corechart', 'bar']});
+  google.charts.setOnLoadCallback(drawBasic);
+
+  function drawBasic() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Assigned Creature', { role: 'style' });
+        data.addColumn('number', 'Number of Tasks', { role: 'style' });
+
+        // xxx
+        data.addRows([
+          ['Sarah', sarahCount],
+          ['Nathan', nathanCount],
+          ['Alice', aliceCount],
+          ['Bishop', bishopCount]
+        ]);
+
+        var options = {
+          title: 'Task Assignments by Creature',
+          hAxis: {
+            title: 'Assigned Creature',
+          },
+          vAxis: {
+            title: 'Number of Tasks'
+          }
+        };
+
+        var chart = new google.visualization.ColumnChart(
+          document.getElementById('chart_div'));
+
+        chart.draw(data, options);
       }
 
-    console.log(taskCounter)
+}
 
-    drawBasic();
-    }
-  }
+  // function assign(){
+  //   for (var name of tasks) {
+  //     if (tasks.name == "Sarah") {
+  //       sarahCount++;
+  //     } else if (tasks.name == "Nathan") {
+  //       nathanCount++;
+  //     } else if (tasks.name == "Alice") {
+  //       aliceCount++;
+  //     } else if (tasks.name == "Bishop") {
+  //       bishopCount++;
+  //     }
+  //
+  //   console.log(taskCounter)
+  //
+  //   drawBasic();
+  //   }
+  // }
 
 //////////////
 /////////////
